@@ -1,0 +1,11 @@
+/* Ekravio: целевые цвета интерфейса. Проверять контраст в итоговом UI. */
+:root {
+  --brand-primary: #3563f3;
+  --brand-accent: #21c7b7;
+  --brand-ink: #15233b;
+  --brand-background-light: #f4f7fc;
+  --brand-background-dark: #0d1424;
+  --brand-surface-dark: #172238;
+  --brand-text-on-dark: #f6f8fc;
+  --font-ui: Inter, "Segoe UI", Arial, sans-serif;
+}

@@ -1,0 +1,19 @@
+<service>
+  <id>Ekravio.Media</id>
+  <name>Ekravio Media Server</name>
+  <description>Ekravio prototype media publication, viewing and recording.</description>
+  <executable>%BASE%\mediamtx.exe</executable>
+  <arguments>mediamtx.yml</arguments>
+  <workingdirectory>%ProgramData%\Ekravio\Server</workingdirectory>
+  <startmode>Automatic</startmode>
+  <stoptimeout>20 sec</stoptimeout>
+  <serviceaccount>
+    <domain>NT AUTHORITY</domain>
+    <user>LocalService</user>
+  </serviceaccount>
+  <logpath>%ProgramData%\Ekravio\Server\logs</logpath>
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>4</keepFiles>
+  </log>
+</service>

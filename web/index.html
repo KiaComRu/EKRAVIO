@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Экравио — веб-панель для просмотра экранов, архива записей и активности компьютеров.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; media-src 'self' blob:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="icon" href="assets/ekravio.ico">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <script type="module" src="app.js?v=2"></script>
+  <title>Экравио — Обзор</title>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Главное меню">
+      <a class="brand" href="#overview"><img src="assets/ekravio.ico" alt="" width="36" height="36"><span>Экравио<span class="brand-caption">Панель наблюдения</span></span></a>
+      <nav class="nav" aria-label="Разделы">
+        <a href="#overview" data-page="overview" aria-current="page"><span class="icon" data-icon="grid"></span>Обзор</a>
+        <a href="#screens" data-page="screens"><span class="icon" data-icon="screen"></span>Экраны</a>
+        <a href="#archive" data-page="archive"><span class="icon" data-icon="archive"></span>Архив</a>
+        <a href="#activity" data-page="activity"><span class="icon" data-icon="activity"></span>Активность</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <button type="button" class="nav-settings" data-connect><span class="icon" data-icon="settings"></span>Подключение</button>
+        <div class="workspace"><span class="workspace-mark"><span class="icon" data-icon="server"></span></span><span><strong>MediaMTX</strong><small id="workspace-detail">Адрес не указан</small></span></div>
+      </div>
+    </aside>
+    <div class="surface">
+      <header class="topbar">
+        <span class="topbar-title">Рабочее пространство <span>/</span> <strong id="breadcrumb">Обзор</strong></span>
+        <div class="topbar-actions"><span id="mode" class="mode"><i></i><span id="mode-label">Сервер не подключён</span></span><button class="button primary connect" data-connect><span class="icon" data-icon="plug"></span><span id="connect-label">Подключить сервер</span></button></div>
+      </header>
+      <main class="main" id="main" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <dialog id="connection-dialog" aria-labelledby="connection-title">
+    <form id="connection-form">
+      <header class="dialog-heading"><div><h2 id="connection-title">Подключение к серверу</h2><p>Укажите адреса MediaMTX и пароль просмотра.</p></div><button type="button" class="button icon-button" data-close="connection-dialog" aria-label="Закрыть">×</button></header>
+      <div class="form-fields">
+        <label>Адрес WebRTC<input name="live" type="url" placeholder="https://server.example:8889" required></label>
+        <label>Адрес архива<input name="playback" type="url" placeholder="https://server.example:9996" required></label>
+        <label>Путь потока<input name="path" value="stage0" required autocomplete="off"></label>
+        <div class="field-row"><label>Имя<input name="user" value="viewer" required autocomplete="username"></label><label>Пароль<input name="password" type="password" required autocomplete="current-password"></label></div>
+      </div>
+      <p class="hint">Добавьте адрес этой панели к разрешённым источникам CORS на сервере. Пароль действует в пределах открытой вкладки.</p>
+      <p id="connection-error" class="form-error" role="alert" hidden></p>
+      <footer class="dialog-footer"><button type="button" id="reset-connection" class="button" hidden>Отключить</button><button type="submit" class="button primary">Подключить</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="player-dialog" class="player-dialog" aria-labelledby="player-title">
+    <header class="dialog-heading"><div><h2 id="player-title">Экран</h2><p id="player-detail"></p></div><button type="button" class="button icon-button" data-close="player-dialog" aria-label="Закрыть">×</button></header>
+    <video id="player" controls playsinline muted aria-label="Видеоплеер"></video>
+    <footer class="player-footer"><p id="player-status" role="status"></p><a id="download" class="button" hidden download>Скачать MP4</a></footer>
+  </dialog>
+</body>
+</html>
